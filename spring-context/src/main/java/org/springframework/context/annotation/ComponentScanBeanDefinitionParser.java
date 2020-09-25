@@ -94,6 +94,7 @@ public class ComponentScanBeanDefinitionParser implements BeanDefinitionParser {
 	}
 
 	protected ClassPathBeanDefinitionScanner configureScanner(ParserContext parserContext, Element element) {
+		// 默认filter，只解析component等官方注解
 		boolean useDefaultFilters = true;
 		if (element.hasAttribute(USE_DEFAULT_FILTERS_ATTRIBUTE)) {
 			useDefaultFilters = Boolean.valueOf(element.getAttribute(USE_DEFAULT_FILTERS_ATTRIBUTE));
@@ -102,6 +103,7 @@ public class ComponentScanBeanDefinitionParser implements BeanDefinitionParser {
 		// Delegate bean definition registration to scanner class.
 		ClassPathBeanDefinitionScanner scanner = createScanner(parserContext.getReaderContext(), useDefaultFilters);
 		scanner.setBeanDefinitionDefaults(parserContext.getDelegate().getBeanDefinitionDefaults());
+		// 外边来的，xml里没这个属性
 		scanner.setAutowireCandidatePatterns(parserContext.getDelegate().getAutowireCandidatePatterns());
 
 		if (element.hasAttribute(RESOURCE_PATTERN_ATTRIBUTE)) {
@@ -122,6 +124,7 @@ public class ComponentScanBeanDefinitionParser implements BeanDefinitionParser {
 			parserContext.getReaderContext().error(ex.getMessage(), parserContext.extractSource(element), ex.getCause());
 		}
 
+		// 解析include/exclude filter
 		parseTypeFilters(element, scanner, parserContext);
 
 		return scanner;

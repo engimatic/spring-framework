@@ -126,6 +126,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		// the new (child) delegate with a reference to the parent for fallback purposes,
 		// then ultimately reset this.delegate back to its original (parent) reference.
 		// this behavior emulates a stack of delegates without actually necessitating one.
+		// 具体的解析过程由DefaultBeanDefinitionDocumentReader实现
 		BeanDefinitionParserDelegate parent = this.delegate;
 		this.delegate = createDelegate(getReaderContext(), root, parent);
 
@@ -144,8 +145,11 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 			}
 		}
 
+		// 在解析Bean定义之前,进行自定义解析   可扩展
 		preProcessXml(root);
+		// 从文档的root开始进行Bean定义的文档对象的解析
 		parseBeanDefinitions(root, this.delegate);
+		// 在解析Bean定义之后,再次进行自定义解析   增强扩展
 		postProcessXml(root);
 
 		this.delegate = parent;
@@ -165,22 +169,27 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 * @param root the DOM root element of the document
 	 */
 	protected void parseBeanDefinitions(Element root, BeanDefinitionParserDelegate delegate) {
+		// 如果Bean定义的文档对象跟节点使用了Spring默认的xml命名空间
 		if (delegate.isDefaultNamespace(root)) {
 			NodeList nl = root.getChildNodes();
 			for (int i = 0; i < nl.getLength(); i++) {
 				Node node = nl.item(i);
 				if (node instanceof Element) {
 					Element ele = (Element) node;
+					// 如果Bean定义的文档对象使用了Spring默认的xml命名空间
 					if (delegate.isDefaultNamespace(ele)) {
+						// 使用Spring Bean规则解析元素节点  import  alias  bean  beans
 						parseDefaultElement(ele, delegate);
 					}
 					else {
+						// 如果Bean定义的文档对象没有使用Spring默认的xml命名空间，则使用自定义的解析规则进行解析
 						delegate.parseCustomElement(ele);
 					}
 				}
 			}
 		}
 		else {
+			// // 如果Bean定义的文档对象跟节点没有使用Spring默认的xml命名空间，则使用自定义的解析规则进行解析
 			delegate.parseCustomElement(root);
 		}
 	}
@@ -302,6 +311,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 	 * and registering it with the registry.
 	 */
 	protected void processBeanDefinition(Element ele, BeanDefinitionParserDelegate delegate) {
+		// bean的解析由BeanDefinitionParserDelegate完成
 		BeanDefinitionHolder bdHolder = delegate.parseBeanDefinitionElement(ele);
 		if (bdHolder != null) {
 			bdHolder = delegate.decorateBeanDefinitionIfRequired(ele, bdHolder);

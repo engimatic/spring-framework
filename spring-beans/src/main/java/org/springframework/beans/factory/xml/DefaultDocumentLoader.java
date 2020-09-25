@@ -69,11 +69,14 @@ public class DefaultDocumentLoader implements DocumentLoader {
 	public Document loadDocument(InputSource inputSource, EntityResolver entityResolver,
 			ErrorHandler errorHandler, int validationMode, boolean namespaceAware) throws Exception {
 
+		// 创建文件解析器工厂
 		DocumentBuilderFactory factory = createDocumentBuilderFactory(validationMode, namespaceAware);
 		if (logger.isDebugEnabled()) {
 			logger.debug("Using JAXP provider [" + factory.getClass().getName() + "]");
 		}
+		//创建文档解析器
 		DocumentBuilder builder = createDocumentBuilder(factory, entityResolver, errorHandler);
+		//解析配置信息
 		return builder.parse(inputSource);
 	}
 
@@ -93,6 +96,7 @@ public class DefaultDocumentLoader implements DocumentLoader {
 
 		if (validationMode != XmlValidationModeDetector.VALIDATION_NONE) {
 			factory.setValidating(true);
+			// 如果xml验证模式为XSD则需要强制指定由此代码生成的解析器将提供对XML名称空间的支持
 			if (validationMode == XmlValidationModeDetector.VALIDATION_XSD) {
 				// Enforce namespace aware for XSD...
 				factory.setNamespaceAware(true);

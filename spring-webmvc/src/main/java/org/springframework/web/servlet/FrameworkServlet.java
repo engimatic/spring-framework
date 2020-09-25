@@ -528,6 +528,7 @@ public abstract class FrameworkServlet extends HttpServletBean implements Applic
 				WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		WebApplicationContext wac = null;
 
+		//  建立父子容器关系
 		if (this.webApplicationContext != null) {
 			// A context instance was injected at construction time -> use it
 			wac = this.webApplicationContext;

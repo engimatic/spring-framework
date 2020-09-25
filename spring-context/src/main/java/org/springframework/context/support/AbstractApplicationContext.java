@@ -454,6 +454,9 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * @return the ResourcePatternResolver for this context
 	 * @see #getResources
 	 * @see org.springframework.core.io.support.PathMatchingResourcePatternResolver
+	 *
+	 * 获取一个Spring Resource的加载器，用于读取Spring Bean的配置信息
+	 * AbstractApplicationContext本身也是一个资源加载器
 	 */
 	protected ResourcePatternResolver getResourcePatternResolver() {
 		return new PathMatchingResourcePatternResolver(this);
@@ -517,12 +520,15 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	public void refresh() throws BeansException, IllegalStateException {
 		synchronized (this.startupShutdownMonitor) {
 			// Prepare this context for refreshing.
+			// 设置容器当前时间，并设置容器为active
 			prepareRefresh();
 
 			// Tell the subclass to refresh the internal bean factory.
+			// 子类启动refreshBeanFactory()方法  加载BeanDefinition
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
+			// 为BeanFactory配置容器特性，例如类加载器/事件处理器
 			prepareBeanFactory(beanFactory);
 
 			try {

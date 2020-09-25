@@ -112,6 +112,8 @@ import org.springframework.lang.Nullable;
  * @see org.springframework.beans.factory.config.BeanPostProcessor#postProcessAfterInitialization
  * @see DisposableBean#destroy
  * @see org.springframework.beans.factory.support.RootBeanDefinition#getDestroyMethodName
+ *
+ * 定义了IoC容器的基本功能规范
  */
 public interface BeanFactory {
 
@@ -120,7 +122,11 @@ public interface BeanFactory {
 	 * beans <i>created</i> by the FactoryBean. For example, if the bean named
 	 * {@code myJndiObject} is a FactoryBean, getting {@code &myJndiObject}
 	 * will return the factory, not the instance returned by the factory.
+	 *
+	 * 对FactoryBean的转移标志
+	 * 如果是FactoryBean本身，需要转移
 	 */
+
 	String FACTORY_BEAN_PREFIX = "&";
 
 
@@ -135,6 +141,8 @@ public interface BeanFactory {
 	 * @return an instance of the bean
 	 * @throws NoSuchBeanDefinitionException if there is no bean with the specified name
 	 * @throws BeansException if the bean could not be obtained
+	 *
+	 * 根据Bean的名字，在IOC容器中获取Bean的实例
 	 */
 	Object getBean(String name) throws BeansException;
 
@@ -155,6 +163,8 @@ public interface BeanFactory {
 	 * @throws NoSuchBeanDefinitionException if there is no such bean definition
 	 * @throws BeanNotOfRequiredTypeException if the bean is not of the required type
 	 * @throws BeansException if the bean could not be created
+	 *
+	 * 根据Bean的名字和Class类型，在IOC容器中获取Bean的实例，增加了类型安全验证
 	 */
 	<T> T getBean(String name, @Nullable Class<T> requiredType) throws BeansException;
 
@@ -225,6 +235,8 @@ public interface BeanFactory {
 	 * will be able to obtain an instance for the same name.
 	 * @param name the name of the bean to query
 	 * @return whether a bean with the given name is present
+	 *
+	 * IOC容器中是否有这个名字的Bean
 	 */
 	boolean containsBean(String name);
 
