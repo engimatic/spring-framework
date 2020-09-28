@@ -130,9 +130,11 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		BeanDefinitionParserDelegate parent = this.delegate;
 		this.delegate = createDelegate(getReaderContext(), root, parent);
 
+		// 默认的命名空间即http://www.springframework.org/schema/beans
 		if (this.delegate.isDefaultNamespace(root)) {
 			String profileSpec = root.getAttribute(PROFILE_ATTRIBUTE);
 			if (StringUtils.hasText(profileSpec)) {
+				// profile属性可以以,分割
 				String[] specifiedProfiles = StringUtils.tokenizeToStringArray(
 						profileSpec, BeanDefinitionParserDelegate.MULTI_VALUE_ATTRIBUTE_DELIMITERS);
 				if (!getReaderContext().getEnvironment().acceptsProfiles(specifiedProfiles)) {
@@ -146,6 +148,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 		}
 
 		// 在解析Bean定义之前,进行自定义解析   可扩展
+		// preProcessXml方法是个空实现，供子类去覆盖，目的在于给子类一个把我们自定义的标签转为Spring标准标签的机会
 		preProcessXml(root);
 		// 从文档的root开始进行Bean定义的文档对象的解析
 		parseBeanDefinitions(root, this.delegate);
@@ -178,7 +181,7 @@ public class DefaultBeanDefinitionDocumentReader implements BeanDefinitionDocume
 					Element ele = (Element) node;
 					// 如果Bean定义的文档对象使用了Spring默认的xml命名空间
 					if (delegate.isDefaultNamespace(ele)) {
-						// 使用Spring Bean规则解析元素节点  import  alias  bean  beans
+						// 使用Spring Bean规则解析元素节点  import  alias  bean  嵌套的beans
 						parseDefaultElement(ele, delegate);
 					}
 					else {
