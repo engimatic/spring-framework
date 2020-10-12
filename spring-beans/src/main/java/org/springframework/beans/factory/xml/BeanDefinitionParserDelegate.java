@@ -430,12 +430,15 @@ public class BeanDefinitionParserDelegate {
 			}
 		}
 
+		// 检查 name 的唯一性
 		if (containingBean == null) {
 			checkNameUniqueness(beanName, aliases, ele);
 		}
 
+		// 解析属性，构造 AbstractBeanDefinition
 		AbstractBeanDefinition beanDefinition = parseBeanDefinitionElement(ele, beanName, containingBean);
 		if (beanDefinition != null) {
+			// 如果 beanName 不存在，则根据条件构造一个 beanName
 			if (!StringUtils.hasText(beanName)) {
 				try {
 					if (containingBean != null) {
@@ -513,21 +516,26 @@ public class BeanDefinitionParserDelegate {
 		}
 
 		try {
-			// 根据class和parent名称，创建BeanDefinition
+			// 根据class和parent名称，创建BeanDefinition  创建用于承载属性的AbstractBeanDefinition类型的GenericBeanDefinition实例
 			AbstractBeanDefinition bd = createBeanDefinition(className, parent);
 
-			// 属性设置
+			// 属性设置 硬编码解析bean的各种属性
 			parseBeanDefinitionAttributes(ele, beanName, containingBean, bd);
-			// 描述信息
+			// 描述信息 设置description属性
 			bd.setDescription(DomUtils.getChildElementValueByTagName(ele, DESCRIPTION_ELEMENT));
 
+			// 解析元素
 			parseMetaElements(ele, bd);
+			// 解析lookup-method属性
 			parseLookupOverrideSubElements(ele, bd.getMethodOverrides());
+			// 解析replace-method属性
 			parseReplacedMethodSubElements(ele, bd.getMethodOverrides());
 
 			// 构造方法设置
 			parseConstructorArgElements(ele, bd);
+			// 解析properties子元素
 			parsePropertyElements(ele, bd);
+			// 解析qualifier子元素
 			parseQualifierElements(ele, bd);
 
 			// 资源和依赖对象
