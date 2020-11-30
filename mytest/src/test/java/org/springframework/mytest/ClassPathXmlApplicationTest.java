@@ -1,9 +1,8 @@
 package org.springframework.mytest;
 
+import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.ClassPathResource;
 
 /**
  * @description:
@@ -13,6 +12,7 @@ import org.springframework.core.io.ClassPathResource;
  */
 public class ClassPathXmlApplicationTest {
 
+	@Test
 	public void classPathXml(){
 		BeanFactory bf = new ClassPathXmlApplicationContext("spring.xml");
 		SimpleBean bean = (SimpleBean) bf.getBean("org.springframework.mytest.SimpleBean");
