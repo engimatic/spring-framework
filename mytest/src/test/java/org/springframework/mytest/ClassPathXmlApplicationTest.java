@@ -18,4 +18,5 @@ public class ClassPathXmlApplicationTest {
 		SimpleBean bean = (SimpleBean) bf.getBean("org.springframework.mytest.SimpleBean");
 		bean.send();
 	}
+
 }
