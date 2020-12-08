@@ -34,6 +34,13 @@ public class MyXmlBeanFactoryTest {
 
 	@Test
 	public void xmlBeanFactoryTest2(){
+		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring.xml"));
+		SimpleBean bean = (SimpleBean) bf.getBean("org.springframework.mytest.AutowireBean");
+		bean.send();
+	}
+
+	@Test
+	public void xmlBeanFactoryTest3(){
 		XmlBeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring.xml"));
 		String[] names = bf.getBeanDefinitionNames();
 		for(String name:names){
