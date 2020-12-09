@@ -35,7 +35,21 @@ public class MyXmlBeanFactoryTest {
 	@Test
 	public void xmlBeanFactoryTest2(){
 		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring.xml"));
-		SimpleBean bean = (SimpleBean) bf.getBean("org.springframework.mytest.AutowireBean");
+		SimpleBean2 bean = (SimpleBean2) bf.getBean("org.springframework.mytest.SimpleBean2");
+		bean.send();
+	}
+
+	@Test
+	public void xmlBeanFactoryTest4(){
+		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring.xml"));
+		AutowireBean bean = (AutowireBean) bf.getBean("org.springframework.mytest.AutowireBean");
+		bean.send2();
+	}
+
+	@Test
+	public void xmlBeanFactoryTest5(){
+		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring.xml"));
+		AutowireBean bean = (AutowireBean) bf.getBean("org.springframework.mytest.AutowireBean");
 		bean.send();
 	}
 

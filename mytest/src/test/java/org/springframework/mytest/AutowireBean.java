@@ -1,5 +1,6 @@
 package org.springframework.mytest;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -14,7 +15,11 @@ public class AutowireBean {
 	private SimpleBean simpleBean;
 
 	public void send() {
-		System.out.println("I am send method from SimpleBean!");
+		System.out.println("I am send method from AutowireBean!");
 		simpleBean.send();
+	}
+
+	public void send2() {
+		System.out.println("I am send method from AutowireBean!");
 	}
 }
