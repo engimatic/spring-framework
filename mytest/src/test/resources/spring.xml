@@ -8,5 +8,11 @@
 		<property name="simpleBean" ref="simpleBean"></property>
 	</bean>
 
+<!--	<bean id="simpleBean2" class="org.springframework.mytest.SimpleBean2">-->
+<!--		<constructor-arg ref="simpleBean"></constructor-arg>-->
+<!--	</bean>-->
+
+<!--	<bean id="myFactoryBean" class="org.springframework.mytest.MyFactoryBean"></bean>-->
+<!--	<bean id="simpleBean2" class="org.springframework.mytest.SimpleBean2" factory-bean="myFactoryBean" factory-method="createSimpleBean"></bean>-->
 
 </beans>

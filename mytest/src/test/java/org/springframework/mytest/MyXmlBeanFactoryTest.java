@@ -26,9 +26,9 @@ import java.io.InputStream;
  */
 public class MyXmlBeanFactoryTest {
 	@Test
-	public void xmlBeanFactoryTest(){
+	public void xmlBeanFactoryTest1(){
 		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring.xml"));
-		SimpleBean bean = (SimpleBean) bf.getBean("org.springframework.mytest.SimpleBean");
+		SimpleBean bean = (SimpleBean) bf.getBean("simpleBean");
 		bean.send();
 	}
 
@@ -38,6 +38,15 @@ public class MyXmlBeanFactoryTest {
 //		SimpleBean2 bean = (SimpleBean2) bf.getBean("org.springframework.mytest.SimpleBean2");
 		SimpleBean2 bean = (SimpleBean2) bf.getBean("simpleBean2");
 		bean.send();
+	}
+
+	@Test
+	public void xmlBeanFactoryTest3(){
+		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring.xml"));
+		SimpleBean bean = (SimpleBean) bf.getBean("simpleBean");
+		SimpleBean2 bean2 = (SimpleBean2) bf.getBean("simpleBean2");
+		bean.send();
+		bean2.send();
 	}
 
 	@Test
@@ -55,7 +64,7 @@ public class MyXmlBeanFactoryTest {
 	}
 
 	@Test
-	public void xmlBeanFactoryTest3(){
+	public void xmlBeanFactoryTest6(){
 		XmlBeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring.xml"));
 		String[] names = bf.getBeanDefinitionNames();
 		for(String name:names){
