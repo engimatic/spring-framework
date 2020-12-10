@@ -9,7 +9,18 @@ package org.springframework.mytest;
  */
 public class SimpleBean2 {
 
+	private SimpleBean simpleBean;
+
 	public void send() {
-		System.out.println("I am send method from SimpleBean!");
+		simpleBean.send();
+		System.out.println("I am send method from SimpleBean2!");
+	}
+
+	public void setSimpleBean(SimpleBean simpleBean) {
+		this.simpleBean = simpleBean;
+	}
+
+	public SimpleBean getSimpleBean() {
+		return simpleBean;
 	}
 }

@@ -35,7 +35,8 @@ public class MyXmlBeanFactoryTest {
 	@Test
 	public void xmlBeanFactoryTest2(){
 		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring.xml"));
-		SimpleBean2 bean = (SimpleBean2) bf.getBean("org.springframework.mytest.SimpleBean2");
+//		SimpleBean2 bean = (SimpleBean2) bf.getBean("org.springframework.mytest.SimpleBean2");
+		SimpleBean2 bean = (SimpleBean2) bf.getBean("simpleBean2");
 		bean.send();
 	}
 

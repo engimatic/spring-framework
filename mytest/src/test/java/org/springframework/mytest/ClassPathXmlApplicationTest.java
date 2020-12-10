@@ -25,40 +25,47 @@ public class ClassPathXmlApplicationTest {
 	@Test
 	public void classPathXml2(){
 		BeanFactory bf = new ClassPathXmlApplicationContext("spring.xml");
-		AutowireBean bean = (AutowireBean) bf.getBean("org.springframework.mytest.AutowireBean");
+		SimpleBean2 bean = (SimpleBean2) bf.getBean("org.springframework.mytest.SimpleBean2");
 		bean.send();
 	}
 
 	@Test
 	public void classPathXml3(){
 		BeanFactory bf = new ClassPathXmlApplicationContext("spring.xml");
-		CompoBean1 bean = (CompoBean1) bf.getBean("org.springframework.mytest.CompoBean1");
+		AutowireBean bean = (AutowireBean) bf.getBean("org.springframework.mytest.AutowireBean");
 		bean.send();
 	}
 
 	@Test
 	public void classPathXml4(){
 		BeanFactory bf = new ClassPathXmlApplicationContext("spring.xml");
-		CompoBean2 bean = (CompoBean2) bf.getBean("org.springframework.mytest.CompoBean2");
+		CompoBean1 bean = (CompoBean1) bf.getBean("org.springframework.mytest.CompoBean1");
 		bean.send();
 	}
 
 	@Test
 	public void classPathXml5(){
 		BeanFactory bf = new ClassPathXmlApplicationContext("spring.xml");
-		CompoBean1 bean = (CompoBean1) bf.getBean("compoBean1");
+		CompoBean2 bean = (CompoBean2) bf.getBean("org.springframework.mytest.CompoBean2");
 		bean.send();
 	}
 
 	@Test
 	public void classPathXml6(){
 		BeanFactory bf = new ClassPathXmlApplicationContext("spring.xml");
+		CompoBean1 bean = (CompoBean1) bf.getBean("compoBean1");
+		bean.send();
+	}
+
+	@Test
+	public void classPathXml7(){
+		BeanFactory bf = new ClassPathXmlApplicationContext("spring.xml");
 		CompoBean2 bean = (CompoBean2) bf.getBean("compoBean2");
 		bean.send();
 	}
 
 	@Test
-	public void xmlBeanFactoryTest3(){
+	public void classPathXmlApplicationContextTest(){
 		ClassPathXmlApplicationContext bf = new ClassPathXmlApplicationContext("spring.xml");
 		String[] names = bf.getBeanDefinitionNames();
 		for(String name:names){
