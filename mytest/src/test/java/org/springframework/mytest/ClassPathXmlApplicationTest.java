@@ -31,22 +31,22 @@ public class ClassPathXmlApplicationTest {
 
 	@Test
 	public void classPathXml3(){
-		BeanFactory bf = new ClassPathXmlApplicationContext("spring.xml");
-		AutowireBean bean = (AutowireBean) bf.getBean("org.springframework.mytest.AutowireBean");
+		BeanFactory bf = new ClassPathXmlApplicationContext("spring1.xml");
+		AutowireBean bean = (AutowireBean) bf.getBean("autowireBean");
 		bean.send();
 	}
 
 	@Test
 	public void classPathXml4(){
-		BeanFactory bf = new ClassPathXmlApplicationContext("spring.xml");
-		CompoBean1 bean = (CompoBean1) bf.getBean("org.springframework.mytest.CompoBean1");
+		BeanFactory bf = new ClassPathXmlApplicationContext("spring2.xml");
+		CompoBean1 bean = (CompoBean1) bf.getBean("compoBean1");
 		bean.send();
 	}
 
 	@Test
 	public void classPathXml5(){
-		BeanFactory bf = new ClassPathXmlApplicationContext("spring.xml");
-		CompoBean2 bean = (CompoBean2) bf.getBean("org.springframework.mytest.CompoBean2");
+		BeanFactory bf = new ClassPathXmlApplicationContext("spring2.xml");
+		CompoBean2 bean = (CompoBean2) bf.getBean("compoBean2");
 		bean.send();
 	}
 

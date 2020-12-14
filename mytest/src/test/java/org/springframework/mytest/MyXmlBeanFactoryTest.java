@@ -51,21 +51,35 @@ public class MyXmlBeanFactoryTest {
 
 	@Test
 	public void xmlBeanFactoryTest4(){
-		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring.xml"));
-		AutowireBean bean = (AutowireBean) bf.getBean("org.springframework.mytest.AutowireBean");
+		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring1.xml"));
+		AutowireBean bean = (AutowireBean) bf.getBean("autowireBean");
 		bean.send2();
 	}
 
 	@Test
 	public void xmlBeanFactoryTest5(){
-		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring.xml"));
-		AutowireBean bean = (AutowireBean) bf.getBean("org.springframework.mytest.AutowireBean");
+		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring1.xml"));
+		AutowireBean bean = (AutowireBean) bf.getBean("autowireBean");
+		bean.send();
+	}
+
+	@Test
+	public void classPathXml4(){
+		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring2.xml"));
+		CompoBean1 bean = (CompoBean1) bf.getBean("compoBean1");
+		bean.send();
+	}
+
+	@Test
+	public void classPathXml5(){
+		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring2.xml"));
+		CompoBean2 bean = (CompoBean2) bf.getBean("compoBean2");
 		bean.send();
 	}
 
 	@Test
 	public void xmlBeanFactoryTest6(){
-		XmlBeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring.xml"));
+		XmlBeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring1.xml"));
 		String[] names = bf.getBeanDefinitionNames();
 		for(String name:names){
 			BeanDefinition beanDefinition = bf.getBeanDefinition(name);

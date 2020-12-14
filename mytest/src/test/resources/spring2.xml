@@ -10,7 +10,7 @@
     <bean id="simpleBean" class="org.springframework.mytest.SimpleBean"></bean>
 	<bean id="simpleBean2" class="org.springframework.mytest.SimpleBean2"></bean>
 
-	<context:annotation-config></context:annotation-config>
+	<!--<context:annotation-config></context:annotation-config>-->
 
     <context:component-scan base-package="org.springframework.mytest"></context:component-scan>
 
