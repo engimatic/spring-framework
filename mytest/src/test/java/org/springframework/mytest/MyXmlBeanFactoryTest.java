@@ -3,6 +3,7 @@ package org.springframework.mytest;
 import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.w3c.dom.Document;
@@ -64,6 +65,16 @@ public class MyXmlBeanFactoryTest {
 	}
 
 	@Test
+	public void xmlBeanFactoryTest7(){
+		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring1.xml"));
+		BeanPostProcessor autowiredAnnotationBeanPostProcessor = (BeanPostProcessor) bf.getBean("org.springframework.context.annotation" +
+				".internalAutowiredAnnotationProcessor");
+		((XmlBeanFactory) bf).addBeanPostProcessor(autowiredAnnotationBeanPostProcessor);
+		AutowireBean bean = (AutowireBean) bf.getBean("autowireBean");
+		bean.send();
+	}
+
+	@Test
 	public void classPathXml4(){
 		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring2.xml"));
 		CompoBean1 bean = (CompoBean1) bf.getBean("compoBean1");
@@ -83,7 +94,7 @@ public class MyXmlBeanFactoryTest {
 		String[] names = bf.getBeanDefinitionNames();
 		for(String name:names){
 			BeanDefinition beanDefinition = bf.getBeanDefinition(name);
-			System.out.println(beanDefinition);
+			System.out.println("bean name:" + name + ", beanDefinition:" + beanDefinition);
 		}
 	}
 
