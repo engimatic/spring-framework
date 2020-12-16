@@ -75,15 +75,25 @@ public class MyXmlBeanFactoryTest {
 	}
 
 	@Test
-	public void classPathXml4(){
+	public void xmlBeanFactoryTest8(){
 		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring2.xml"));
 		CompoBean1 bean = (CompoBean1) bf.getBean("compoBean1");
 		bean.send();
 	}
 
 	@Test
-	public void classPathXml5(){
+	public void xmlBeanFactoryTest9(){
 		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring2.xml"));
+		CompoBean2 bean = (CompoBean2) bf.getBean("compoBean2");
+		bean.send();
+	}
+
+	@Test
+	public void xmlBeanFactoryTest10(){
+		BeanFactory bf = new XmlBeanFactory( new ClassPathResource("spring2.xml"));
+		BeanPostProcessor autowiredAnnotationBeanPostProcessor = (BeanPostProcessor) bf.getBean("org.springframework.context.annotation" +
+				".internalAutowiredAnnotationProcessor");
+		((XmlBeanFactory) bf).addBeanPostProcessor(autowiredAnnotationBeanPostProcessor);
 		CompoBean2 bean = (CompoBean2) bf.getBean("compoBean2");
 		bean.send();
 	}
