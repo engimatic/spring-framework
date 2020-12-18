@@ -2,6 +2,7 @@ package org.springframework.mytest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * @description:
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @email: eternity_bliss@sina.cn
  * @create: 2020-12-09 下午4:10
  */
-@Component
+@Service
 public class CompoBean2 {
 
 	@Autowired
