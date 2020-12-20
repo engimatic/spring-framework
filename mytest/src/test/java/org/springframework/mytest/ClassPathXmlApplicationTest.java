@@ -4,8 +4,10 @@ import org.junit.Test;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.xml.XmlBeanFactory;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.scantest.ConfigBean4;
 
 /**
  * @description:
@@ -61,6 +63,20 @@ public class ClassPathXmlApplicationTest {
 	public void classPathXml7(){
 		BeanFactory bf = new ClassPathXmlApplicationContext("spring.xml");
 		CompoBean2 bean = (CompoBean2) bf.getBean("compoBean2");
+		bean.send();
+	}
+
+	@Test
+	public void classPathXml8(){
+		BeanFactory bf = new ClassPathXmlApplicationContext("spring2.xml");
+		ConfigBean2 bean = (ConfigBean2) bf.getBean("configBean2");
+		bean.send();
+	}
+
+	@Test
+	public void classPathXml9(){
+		BeanFactory bf = new ClassPathXmlApplicationContext("spring2.xml");
+		ConfigBean4 bean = (ConfigBean4) bf.getBean("configBean4");
 		bean.send();
 	}
 
