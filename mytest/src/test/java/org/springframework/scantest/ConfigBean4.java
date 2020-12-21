@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 public class ConfigBean4 {
 
 	@Autowired
-	private ConfigBean3 compoBean1;
+	private ConfigBean3 compoBean3;
 
 	public void send() {
-		compoBean1.send();
+		compoBean3.send();
 		System.out.println("I am send method from ConfigBean4!");
 	}
 }
