@@ -81,6 +81,20 @@ public class ClassPathXmlApplicationTest {
 	}
 
 	@Test
+	public void classPathXml10(){
+		BeanFactory bf = new ClassPathXmlApplicationContext("spring3.xml");
+		ConfigBean2 bean = (ConfigBean2) bf.getBean("configBean2");
+		bean.send();
+	}
+
+	@Test
+	public void classPathXml11(){
+		BeanFactory bf = new ClassPathXmlApplicationContext("spring3.xml");
+		CompoBean2 bean = (CompoBean2) bf.getBean("compoBean2");
+		bean.send();
+	}
+
+	@Test
 	public void classPathXmlApplicationContextTest(){
 		ClassPathXmlApplicationContext bf = new ClassPathXmlApplicationContext("spring.xml");
 		String[] names = bf.getBeanDefinitionNames();
