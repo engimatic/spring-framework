@@ -20,7 +20,7 @@ public class LogAspectConfig {
 	}
 
 	public void after(){
-		System.out.println("LogAspectConfig atfer!");
+		System.out.println("LogAspectConfig after!");
 	}
 
 }
