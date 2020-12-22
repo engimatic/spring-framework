@@ -1,5 +1,8 @@
 package org.springframework.mytest;
 
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.springframework.aop.Pointcut;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,12 +14,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class LogAspectConfig {
 
-	public void before(){
+	public void before(JoinPoint joinPoint){
 		System.out.println("LogAspectConfig before!");
 	}
 
-	public void around(){
-		System.out.println("LogAspectConfig around!");
+	public void around(ProceedingJoinPoint joinPoint) throws Throwable {
+		long start = System.currentTimeMillis();
+		joinPoint.proceed();
+		System.out.println("LogAspectConfig around!Cost " + (System.currentTimeMillis() - start));
 	}
 
 	public void after(){

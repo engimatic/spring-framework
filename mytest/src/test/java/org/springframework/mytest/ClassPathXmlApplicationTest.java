@@ -90,7 +90,7 @@ public class ClassPathXmlApplicationTest {
 	@Test
 	public void classPathXml11(){
 		BeanFactory bf = new ClassPathXmlApplicationContext("spring3.xml");
-		CompoBean2 bean = (CompoBean2) bf.getBean("compoBean2");
+		ConfigBean1 bean = (ConfigBean1) bf.getBean("configBean1");
 		bean.send();
 	}
 

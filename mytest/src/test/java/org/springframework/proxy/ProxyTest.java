@@ -17,8 +17,7 @@ public class ProxyTest {
 		Person person = new WorkingPerson();
 		PersonJdkProxy jdkProxy = new PersonJdkProxy(person);
 		Person proxyPerson = (Person) Proxy.newProxyInstance(person.getClass().getClassLoader(),
-				person.getClass().getInterfaces(),
-				jdkProxy);
+				person.getClass().getInterfaces(), jdkProxy);
 		proxyPerson.doThings();
 	}
 
