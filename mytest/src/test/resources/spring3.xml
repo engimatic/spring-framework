@@ -11,7 +11,7 @@
 
 
 	<aop:config>
-		<aop:pointcut id="mypointcut" expression="execution(* *.send())"/>
+		<aop:pointcut id="mypointcut" expression="execution(* org.springframework.mytest.ConfigBean*.send())"/>
 		<aop:aspect ref="logAspectConfig">
 			<aop:before method="before" pointcut-ref="mypointcut"></aop:before>
 			<aop:after method="after" pointcut-ref="mypointcut"></aop:after>

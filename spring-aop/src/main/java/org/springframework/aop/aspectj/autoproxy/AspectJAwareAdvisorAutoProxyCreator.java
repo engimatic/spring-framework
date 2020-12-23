@@ -16,6 +16,8 @@
 
 package org.springframework.aop.aspectj.autoproxy;
 
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -30,6 +32,8 @@ import org.springframework.aop.aspectj.AspectJPointcutAdvisor;
 import org.springframework.aop.aspectj.AspectJProxyUtils;
 import org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator;
 import org.springframework.aop.interceptor.ExposeInvocationInterceptor;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.PropertyValues;
 import org.springframework.core.Ordered;
 import org.springframework.util.ClassUtils;
 
@@ -48,6 +52,45 @@ public class AspectJAwareAdvisorAutoProxyCreator extends AbstractAdvisorAutoProx
 
 	private static final Comparator<Advisor> DEFAULT_PRECEDENCE_COMPARATOR = new AspectJPrecedenceComparator();
 
+	@Override
+	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		return super.postProcessAfterInitialization(bean, beanName);
+	}
+
+	@Override
+	public Object postProcessBeforeInitialization(Object bean, String beanName) {
+		return super.postProcessBeforeInitialization(bean, beanName);
+	}
+
+	@Override
+	public PropertyValues postProcessPropertyValues(PropertyValues pvs, PropertyDescriptor[] pds, Object bean, String beanName) {
+		return super.postProcessPropertyValues(pvs, pds, bean, beanName);
+	}
+
+	@Override
+	public boolean postProcessAfterInstantiation(Object bean, String beanName) {
+		return super.postProcessAfterInstantiation(bean, beanName);
+	}
+
+	@Override
+	public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
+		return super.postProcessBeforeInstantiation(beanClass, beanName);
+	}
+
+	@Override
+	public Class<?> predictBeanType(Class<?> beanClass, String beanName) {
+		return super.predictBeanType(beanClass, beanName);
+	}
+
+	@Override
+	public Object getEarlyBeanReference(Object bean, String beanName) throws BeansException {
+		return super.getEarlyBeanReference(bean, beanName);
+	}
+
+	@Override
+	public Constructor<?>[] determineCandidateConstructors(Class<?> beanClass, String beanName) throws BeansException {
+		return super.determineCandidateConstructors(beanClass, beanName);
+	}
 
 	/**
 	 * Sort the rest by AspectJ precedence. If two pieces of advice have
