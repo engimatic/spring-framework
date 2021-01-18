@@ -1,3 +1,16 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        maven { url 'https://maven.aliyun.com/repository/google/' }
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        maven { url 'https://maven.aliyun.com/repository/spring/' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin/' }
+        maven { url 'https://maven.aliyun.com/repository/spring-plugin/' }
+        maven { url "https://repo.spring.io/libs-release" }
+        gradlePluginPortal()
+        maven { url 'https://repo.spring.io/plugins-release' }
+    }
+}
 include "spring-aop"
 include "spring-aspects"
 include "spring-beans"
@@ -20,14 +33,15 @@ include "spring-webmvc"
 include "spring-webflux"
 include "spring-websocket"
 include "spring-framework-bom"
+include 'mytest'
 
 // Exposes gradle buildSrc for IDE support
 include "buildSrc"
-rootProject.children.find{ it.name == "buildSrc" }.name = "spring-build-src"
+rootProject.children.find { it.name == "buildSrc" }.name = "spring-build-src"
 
 rootProject.name = "spring"
-rootProject.children.each {project ->
-	project.buildFileName = "${project.name}.gradle"
+rootProject.children.each { project ->
+    project.buildFileName = "${project.name}.gradle"
 }
-include 'mytest'
+
 
