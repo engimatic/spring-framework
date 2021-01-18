@@ -16,4 +16,6 @@ dependencies {
     compile(project(":spring-context"))
     compile(project(":spring-aop"))
     compile(project(":spring-aspects"))
+    compile(project(":spring-web"))
+    compile(project(":spring-test"))
 }

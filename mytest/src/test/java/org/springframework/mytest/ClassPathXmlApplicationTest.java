@@ -24,7 +24,7 @@ public class ClassPathXmlApplicationTest {
 	@Test
 	public void classPathXml2(){
 		BeanFactory bf = new ClassPathXmlApplicationContext("spring.xml");
-		SimpleBean2 bean = (SimpleBean2) bf.getBean("org.springframework.mytest.SimpleBean2");
+		SimpleBean2 bean = (SimpleBean2) bf.getBean("simpleBean2");
 		bean.send();
 	}
 
@@ -51,14 +51,14 @@ public class ClassPathXmlApplicationTest {
 
 	@Test
 	public void classPathXml6(){
-		BeanFactory bf = new ClassPathXmlApplicationContext("spring.xml");
+		BeanFactory bf = new ClassPathXmlApplicationContext("spring2.xml");
 		CompoBean1 bean = (CompoBean1) bf.getBean("compoBean1");
 		bean.send();
 	}
 
 	@Test
 	public void classPathXml7(){
-		BeanFactory bf = new ClassPathXmlApplicationContext("spring.xml");
+		BeanFactory bf = new ClassPathXmlApplicationContext("spring2.xml");
 		CompoBean2 bean = (CompoBean2) bf.getBean("compoBean2");
 		bean.send();
 	}
